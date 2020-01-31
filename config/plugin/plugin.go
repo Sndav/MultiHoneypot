@@ -1,18 +1,20 @@
 package plugin
 
 import (
-	"Muti-Honeypot/internal/pkg/plugin"
-	"Muti-Honeypot/plugins/test"
+	"Multi-Honeypot/internal/pkg/plugin"
+	"Multi-Honeypot/plugins/mysql"
+	"Multi-Honeypot/plugins/test"
 )
 
 type Plugin struct {
-	Name string
+	Name           string
 	BackendProcess plugin.BackendHandler
-	BufferProcess plugin.BufferProcessHandler
+	BufferProcess  plugin.BufferProcessHandler
 }
 
 func GetPlugins() []Plugin {
 	return []Plugin{
-		{"test",test.Entrance,test.BufferProcess},
+		{"test", test.Entrance, test.BufferProcess},
+		{"mysql", mysql.Backend, mysql.BufferProcess},
 	}
 }

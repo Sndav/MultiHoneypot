@@ -1,10 +1,8 @@
 package main
 
-import "Muti-Honeypot/internal/app/backend"
+import "Multi-Honeypot/internal/app/backend"
 
-func main(){
-	app := backend.NewApp("/Users/hackboy/Code/Muti-Honeypot/config/config.ini")
+func main() {
+	app := backend.NewApp("/Users/hackboy/Code/Multi-Honeypot/config/config.ini")
 	app.Start()
 }
-
-

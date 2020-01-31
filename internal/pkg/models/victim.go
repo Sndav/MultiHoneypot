@@ -7,12 +7,12 @@ const (
 )
 
 type Victim struct {
-	ID        uint   `gorm:"primary_key"`
-	FromIP    string `gorm:"size:50"`
-	Service   string `gorm:"size:50"`
-	Payload   string `gorm:"type:longtext"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID        uint      `gorm:"primary_key" json:"id"`
+	FromIP    string    `gorm:"size:50" json:"from_ip"`
+	Service   string    `gorm:"size:50" json:"service"`
+	Payload   string    `gorm:"type:longtext" json:"payload"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 func (c *Victim) TableName() string {
