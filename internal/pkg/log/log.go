@@ -1,7 +1,7 @@
 package log
 
 import (
-	"Muti-Honeypot/config/log"
+	"Multi-Honeypot/config/log"
 	"github.com/sirupsen/logrus"
 )
 
@@ -23,41 +23,42 @@ const (
 	PANIC   logType = 4
 )
 
-func NewLog() *Log{
-	log        := &Log{}
-	log.INFO    = 0
+func NewLog() *Log {
+	log := &Log{}
+	log.INFO = 0
 	log.WARNING = 1
-	log.ERROR   = 2
-	log.OTHER   = 3
-	log.PANIC   = 4
+	log.ERROR = 2
+	log.OTHER = 3
+	log.PANIC = 4
 	return log
 }
 
-func (log *Log) Log(logTypes logType,err ...interface{}){
-
+func (log *Log) Log(logTypes logType, processName string, msg ...interface{}) {
+	logHandler := logrus.WithFields(logrus.Fields{
+		"process": processName,
+	})
 	switch logTypes {
 	case INFO:
-		logrus.Info(err...)
+		logHandler.Info(msg...)
 		break
 	case WARNING:
-		logrus.Warn(err...)
+		logHandler.Warn(msg...)
 		break
 	case ERROR:
-		logrus.Error(err...)
+		logHandler.Error(msg...)
 		break
 	case OTHER:
-		logrus.Print(err...)
+		logHandler.Print(msg...)
 		break
 	case PANIC:
-		logrus.Panic(err...)
+		logHandler.Panic(msg...)
 		break
 	default:
-		logrus.Info(err...)
+		logHandler.Info(msg...)
 		break
 	}
 }
 
-
-func init(){
+func init() {
 	log.LogInit()
 }
